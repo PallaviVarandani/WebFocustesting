@@ -1,4 +1,4 @@
--*dnkjvsvncjdvdvcvds
+
 ENGINE REST SET CONNECTION_ATTRIBUTES geonames/,:'http://api.geonames.org'
  
 FILEDEF RESTTSCQ DISK geonames/findnearbypostalcodes_request.txt
