@@ -1,0 +1,13 @@
+-INCLUDE '/home/iadmin/i9999_221/ibi/homeapps/pth_pallavi/webfocustesting/variable.fex';
+ENGINE REST SET CONNECTION_ATTRIBUTES geonames/,:'http://api.geonames.org'
+ 
+FILEDEF RESTTSCQ DISK geonames/findnearbypostalcodes_request.txt
+TABLE FILE findnearbypostalcodes
+PRINT
+   ADMINCODE2 LAT LNG
+WHERE POSTALCODE EQ '10121'
+WHERE POSTALCODE EQ '11209'
+WHERE POSTALCODE EQ '07306'
+END
+ 
+-*First Edit By Pallavi

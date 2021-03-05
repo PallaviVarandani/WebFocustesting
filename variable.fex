@@ -1,0 +1,2 @@
+-SET &&VAR=&FOCSECUSER;
+-TYPE &&VAR
