@@ -1,0 +1,87 @@
+ 
+-***********************************
+-*** TEST - 01/08/2021 - J.Pierno
+-***********************************
+-*
+-DEFAULTH &APPSTR='';
+-*
+-TYPE *** In tcismain.fex ! *** ;
+-*** -TYPE *** HOSTNAME: &HOSTNAME ;
+-*** -TYPE *** UTYPE:    &UTYPE ;
+-*** -TYPE *** UID:      &UID
+-*** -TYPE *** NAME:     &NAME
+-*** -TYPE *** FNAME:    &FNAME
+-*** -TYPE *** LNAME:    &LNAME
+-*** -TYPE *** ORG:      &ORG
+-*** -TYPE *** STREET:   &STREET
+-*** -TYPE *** ADDR:     &ADDR
+-*** -TYPE *** CITY:     &CITY
+-*** -TYPE *** STATE:    &STATE
+-*** -TYPE *** ZIP:      &ZIP
+-*** -TYPE *** EADDR:    &EADDR
+-*** -TYPE *** UTYPE:    &UTYPE
+-*** -TYPE *** ATYPE:    &ATYPE
+-*** -TYPE *** QTYPE:    &QTYPE
+-*** -TYPE *** HOSTNAME: &HOSTNAME
+-*** -TYPE *** APPSTR:   &APPSTR
+-*
+-***********************************
+-*
+-INCLUDE DEBUG
+-***********************************
+-*** TEST - 03/05/2021 - J.Pierno
+-***********************************
+-EXIT
+-***********************************
+-*
+-*========================================================================
+-* code checks if user is authorized for itcis url
+-IF &HOSTNAME CONTAINS 'itcis' OR 'ITCIS' GOTO CHKUSR ELSE GOTO GOODDAY;
+-*
+-CHKUSR
+-INCLUDE itcis_url_check.fex
+-*
+-GOODDAY
+-*=========================================================================
+-*
+-SET &RNUM1 = RDUNIF('D4.2') * 100000000;
+-SET &RNUM2 = RDUNIF('D4.2') * 100000000;
+-RUN
+-*
+-HTMLFORM BEGIN
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+<head>
+<SCRIPT TYPE="text/javascript">
+//if(chkList != true){
+//var chkList= false;}
+//var bDate;
+//var eDate;
+var userRole='!IBI.AMP.UTYPE;';
+var AppStr='!IBI.AMP.APPSTR;';
+var helpAnchor='Welcome';
+function myOpen(url){
+windowHandle = window.open(url);
+}
+</script>
+<title>TCIS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<frameset rows="103,*" cols="*" framespacing="0" frameborder="NO" border="0">
+<frame src="/tcisaiv/header.htm" name="topFrame" title="top frame" scrolling="NO" noresize >
+<!--
+  <frame src="!IBI.AMP.NAVLOAD;"  name="navFrame" title="navigation frame on left" scrolling="NO">
+  <frame src="!IBI.AMP.USRLOAD;" name="mainFrame" title="main content frame right center of page">
+-->
+<frameset rows="*" cols="12%,*">
+  <frame src="/tcisaiv/navframe.htm"  name="navFrame" title="navigation frame on left" scrolling="NO">
+  <frame src="/tcisaiv/mainframe.htm" name="mainFrame" title="main content frame right center of page">
+</frameset>
+</frameset>
+<noframes>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+</body></noframes>
+</html>
+-HTMLFORM END
+-EXIT
+-*
